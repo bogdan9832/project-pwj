@@ -1,0 +1,51 @@
+
+.delete-btn{
+  .mat-icon{
+    font-size: 18px !important;
+    width: 18px !important;
+    height: 18px !important;
+    line-height: 18px !important;
+  }
+  position: absolute;
+    top: -12px;
+    right: -12px;
+    margin: 0px !important;
+    z-index: 1000;
+    padding: 4px !important;
+    min-width: 0px;
+    min-height: 0px;
+    line-height: 18px;
+    border-radius: 18px;
+}
+.filters{
+  padding: 32px;
+  margin-bottom: 32px;
+  background: #fcfcfc;
+}
+.wrapper{
+  padding-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+}
+table{
+  border-collapse: collapse;
+  width: 100%;
+  thead th{
+    padding: 16px;
+    font-size: 18px;
+    border-bottom: 2px solid #333;
+  }
+  tbody{
+    td{
+      padding: 8px 32px;
+      font-size:18px;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+
+    }
+    tr:hover{
+      background: #ccc;
+    }
+
+  }
+}

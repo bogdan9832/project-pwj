@@ -1,0 +1,32 @@
+
+.order-list{
+  width: 20%;
+float:right;
+height: 100vh;
+border-left: 2px solid #ccc;
+display: flex;
+flex-direction: column;
+h2,.total{
+  padding: 16px;
+  font-size: 18px;
+}
+}
+.order-items{
+flex-grow: 1;
+overflow-y: scroll;
+overflow-x: hidden;
+
+}
+.total{
+  display: flex;
+  span{
+    flex-grow: 1;
+    display: block;
+    text-align: right;
+  }
+}
+
+.grid{
+  width: calc(80% - 36px);
+  float: left;
+}

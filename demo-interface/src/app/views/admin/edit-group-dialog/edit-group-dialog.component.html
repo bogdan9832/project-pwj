@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{group.id == -1 ? 'Create' : 'Edit'}} Group</h1>
+
+
+<div mat-dialog-content style="display:flex;flex-direction: column;">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="group.name" >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Image</mat-label>
+    <input matInput [(ngModel)]="group.image" >
+  </mat-form-field>
+</div>
+
+<div style="display: flex; width: 100%;">
+    <button mat-button matDialogClose>Cancel</button>
+    <span style="flex-grow:1"></span>
+    <button (click)="save()" mat-raised-button>Save</button>
+
+</div>

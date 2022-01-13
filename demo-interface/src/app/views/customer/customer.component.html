@@ -1,0 +1,77 @@
+<div class="grid">
+  <ng-container *ngIf="!selectedGroup">
+    <div class="grid-list">
+      <div *ngFor="let group of groups"  class="grid-item mat-elevation-z4" >
+        <div class="bg" [style.background]="'url(\'' + group.image + '\')'">
+          &nbsp;
+        </div>
+        <div class="content" (click)="selectGroup(group)"> <span>{{ group.name }}</span></div>
+
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="selectedGroup && !selectedProduct">
+    <div class="grid-list">
+      <div  class="grid-item mat-elevation-z4" style="align-items: center;justify-content: center;" (click)="this.selectedGroup = null">
+        <mat-icon>arrow_back</mat-icon>
+      </div>
+
+      <div *ngFor="let product of products" class="grid-item mat-elevation-z4">
+        <div class="bg" [style.background]="'url(\'' + product.image + '\')'">
+          &nbsp;
+        </div>
+        <div class="content" (click)="selectProduct(product)"><span>{{ product.name }}</span></div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="selectedGroup && selectedProduct">
+    <div class="grid-list">
+      <div  class="grid-item mat-elevation-z4" style="align-items: center;justify-content: center;" (click)=" this.selectedProduct = null; this.selectedItem = null;">
+        <mat-icon>arrow_back</mat-icon>
+      </div>
+
+      <div *ngFor="let option of selectedProduct.options" class="grid-item mat-elevation-z4">
+
+        <div class="content" (click)="selectOption(option)"><span>{{ option.name }}</span></div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div class="order-list">
+
+  <h2>Your order</h2>
+  <div class="order-items">
+  <div class="order-item" *ngFor="let item of order.items">
+    <table style="width: 100%;
+    margin-bottom: 8px;
+    border-collapse: collapse;
+    background: #fcfcfc;
+    border: 1px solid #ececec;">
+      <tr>
+        <td rowspan="3" style="background: #fca311; height: 64px;width: 64px; font-size: 32px; color: #14213d; text-align: center;">{{item.quantity}}</td>
+        <td style="font-size: 18px;text-align: center; padding: 8px;">{{item.product.name}} ({{item.price}} RON)</td>
+      </tr>
+
+      <tr>
+        <td>
+          <table style="width: 100%;">
+            <tr *ngFor="let option of item.options">
+                <td>{{option.quantity}} x</td>
+                <td>{{option.option.name}} ({{option.priceModifier | number: "1.2"}} RON)</td>
+                <td style=" text-align:right;">{{option.priceModifier * option.quantity | number: "1.2"}}</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align: right;padding: 8px;font-size: 18px;">{{item.value | number: "1.2"}} RON</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="total">
+Total: <span>{{total | number: "1.2"}} RON</span>
+</div>
+<button [disabled]="order.items.length == 0" (click)="placeOrder()" mat-raised-button color="primary">Order</button>
+</div>

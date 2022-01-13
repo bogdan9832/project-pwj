@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>{{product.id == -1 ? 'Create' : 'Edit'}} Product</h1>
+
+
+<div mat-dialog-content style="display:flex;flex-direction: column;">
+  <div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="product.name" >
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Price</mat-label>
+    <input matInput [(ngModel)]="product.price" >
+  </mat-form-field>
+</div>
+<mat-form-field appearance="outline">
+  <mat-label>Image</mat-label>
+  <input matInput [(ngModel)]="product.image" >
+</mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea matInput [(ngModel)]="product.description" ></textarea>
+  </mat-form-field>
+</div>
+
+<div style="display: flex; width: 100%;">
+    <button mat-button matDialogClose>Cancel</button>
+    <span style="flex-grow:1"></span>
+    <button (click)="save()" mat-raised-button>Save</button>
+
+</div>

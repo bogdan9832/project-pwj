@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.grid-item{
+  width: 160px;
+  height: 160px;
+  display: flex;
+  cursor: pointer;
+  position: relative;
+  margin: 16px;
+  .mat-icon{
+font-size: 64px !important;
+width: 64px !important;
+height: 64px !important;
+line-height: 64px !important;
+  }
+  .bg{
+    position: absolute;
+    top:0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-size: cover !important ;
+    z-index: 1;
+  }
+  .content{
+    cursor: pointer;
+    user-select: none;
+display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.4);
+    z-index: 100 !important;
+    color:#fff;
+    font-size: 20px;
+
+    &:hover{
+      font-size: 24px;
+      background: rgba(0,0,0,0.2);
+    }
+
+  }
+
+}
+.grid-list{
+  display: flex;
+}
+

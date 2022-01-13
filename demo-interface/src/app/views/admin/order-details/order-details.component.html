@@ -1,0 +1,55 @@
+<div mat-dialog-title style="display: flex;">
+<h1 >Order Details</h1>
+<span style="flex-grow: 1"></span>
+  <button mat-icon-button matDialogClose><mat-icon>close</mat-icon></button>
+</div>
+
+<div class="data">
+  <span class="label">Customer: </span> {{order.customer.firstName}} {{order.customer.lastName}}
+</div>
+<div class="data">
+  <span class="label">Date: </span> {{order.timestamp | date: 'dd.MM.yyyy HH:mm'}}
+</div>
+
+<div class="data">
+  <span class="label">Total: </span> {{order.total | number: '1.2'}}
+</div>
+
+
+<div class="items">
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <ng-container *ngFor="let item of order.items; let itemIndex = index">
+
+      <tr [style.border-bottom]="item.options.length == 0 ? '1px solid #ccc' : 'none' " [style.background]="itemIndex % 2 == 0 ? '#ececec' :'#fff'">
+        <td>{{item.product.name}}</td>
+        <td>{{item.quantity | number:'1.2'}}</td>
+        <td>{{item.price | number:'1.2'}} RON</td>
+        <td [attr.rowspan]="item.options.length + 1">{{item.value}} RON</td>
+      </tr>
+      <ng-container  *ngIf="item.options.length > 0">
+        <tr *ngFor="let option of item.options; let i = index" [style.border-bottom]="item.options.length - 1 == i ? '1px solid #ccc' : 'none' "
+        [style.background]="itemIndex % 2 == 0 ? '#ececec' :'#fff'"
+        >
+
+
+                  <td>{{option.option.name}} </td>
+                  <td>{{option.quantity | number:'1.2'}}</td>
+                  <td>{{option.priceModifier| number:'1.2'}} RON</td>
+
+
+
+        </tr>
+      </ng-container>
+
+    </ng-container>
+
+  </table>
+</div>

@@ -1,0 +1,97 @@
+<mat-tab-group mat-align-tabs="center" [selectedIndex]="1">
+  <mat-tab label="Products">
+
+    <div class="grid">
+      <ng-container *ngIf="!selectedGroup">
+        <div class="grid-list">
+          <div *ngFor="let group of groups"  class="grid-item mat-elevation-z4" >
+            <div class="bg" [style.background]="'url(\'' + group.image + '\')'">
+              &nbsp;
+            </div>
+            <div class="content" (click)="selectGroup(group)" (dblclick)="editGroup(group)"> <span>{{ group.name }}</span></div>
+            <button mat-raised-button class="delete-btn" (click)="deleteGroup(group)"><mat-icon>close</mat-icon></button>
+          </div>
+          <div  class="grid-item mat-elevation-z4" style="align-items: center;justify-content: center;" (click)="createGroup()">
+            <mat-icon>add</mat-icon>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="selectedGroup && !selectedProduct">
+        <div class="grid-list">
+
+          <div  class="grid-item mat-elevation-z4" style="align-items: center;justify-content: center;" (click)="this.selectedGroup = null">
+            <mat-icon>arrow_back</mat-icon>
+          </div>
+
+          <div *ngFor="let product of products" class="grid-item mat-elevation-z4">
+            <div class="bg" [style.background]="'url(\'' + product.image + '\')'">
+              &nbsp;
+            </div>
+            <div class="content" (click)="selectProduct(product)" (dblclick)="editProduct(product)"><span>{{ product.name }}</span></div>
+            <button mat-raised-button class="delete-btn" (click)="deleteProduct(product)"><mat-icon>close</mat-icon></button>
+          </div>
+
+          <div  class="grid-item mat-elevation-z4" style="align-items: center;justify-content: center;" (click)="createProduct()">
+            <mat-icon>add</mat-icon>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="selectedGroup && selectedProduct">
+        <div class="grid-list">
+          <div  class="grid-item mat-elevation-z4" style="align-items: center;justify-content: center;" (click)=" this.selectedProduct = null; ">
+            <mat-icon>arrow_back</mat-icon>
+          </div>
+
+          <div *ngFor="let option of selectedProduct.options" class="grid-item mat-elevation-z4">
+
+            <div class="content" (dblclick)="editOption(option)"><span>{{ option.name }}</span></div>
+            <button mat-raised-button class="delete-btn" (click)="deleteOption(option)"><mat-icon>close</mat-icon></button>
+          </div>
+          <div  class="grid-item mat-elevation-z4" style="align-items: center;justify-content: center;" (click)="createOption()">
+            <mat-icon>add</mat-icon>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </mat-tab>
+  <mat-tab label="Orders">
+    <div class="wrapper">
+      <div class="filters-wrapper"></div>
+    <div class="filters mat-elevation-z2">
+
+        <mat-form-field class="example-form-field" (click)="rangePicker.open()" appearance="fill">
+          <mat-label>Date Range</mat-label>
+          <mat-date-range-input
+            [formGroup]="dateRange"
+            [rangePicker]="rangePicker"
+            [comparisonStart]="dateRange.value.start"
+            [comparisonEnd]="dateRange.value.end">
+            <input matStartDate placeholder="Start date" formControlName="start">
+            <input matEndDate placeholder="End date" formControlName="end">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="rangePicker" ></mat-datepicker-toggle>
+          <mat-date-range-picker #rangePicker></mat-date-range-picker>
+        </mat-form-field>
+
+
+    </div>
+    <div class="orders-list">
+        <table>
+          <thead>
+            <tr><th>Date</th><th>Customer</th> <th>Total</th></tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders" (click)="showOrder(order)">
+              <td>{{order.timestamp | date: 'dd.MM.yyyy HH:mm'}}</td>
+              <td>{{order.customer.firstName}} {{order.customer.lastName}}</td>
+              <td style="text-align: right;">{{order.total | number:'1.2'}} RON</td>
+            </tr>
+          </tbody>
+        </table>
+
+    </div>
+  </div>
+  </mat-tab>
+
+  </mat-tab-group>
