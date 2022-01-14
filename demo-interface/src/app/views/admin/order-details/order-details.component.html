@@ -30,9 +30,9 @@
 
       <tr [style.border-bottom]="item.options.length == 0 ? '1px solid #ccc' : 'none' " [style.background]="itemIndex % 2 == 0 ? '#ececec' :'#fff'">
         <td>{{item.product.name}}</td>
-        <td>{{item.quantity | number:'1.2'}}</td>
-        <td>{{item.price | number:'1.2'}} RON</td>
-        <td [attr.rowspan]="item.options.length + 1">{{item.value}} RON</td>
+        <td>{{item.quantity | number:'1.2-2'}}</td>
+        <td>{{item.price | number:'1.2-2'}} RON</td>
+        <td [attr.rowspan]="item.options.length + 1">{{item.value| number:'1.2-2'}} RON</td>
       </tr>
       <ng-container  *ngIf="item.options.length > 0">
         <tr *ngFor="let option of item.options; let i = index" [style.border-bottom]="item.options.length - 1 == i ? '1px solid #ccc' : 'none' "

@@ -85,7 +85,7 @@
             <tr *ngFor="let order of orders" (click)="showOrder(order)">
               <td>{{order.timestamp | date: 'dd.MM.yyyy HH:mm'}}</td>
               <td>{{order.customer.firstName}} {{order.customer.lastName}}</td>
-              <td style="text-align: right;">{{order.total | number:'1.2'}} RON</td>
+              <td style="text-align: right;">{{order.total | number:'1.2-2'}} RON</td>
             </tr>
           </tbody>
         </table>

@@ -31,7 +31,7 @@ public class ProductGroupController {
         return service.insert(group);
     }
     @PatchMapping("/groups")
-    ProductGroup  update(@RequestBody ProductGroup group){
+    ProductGroup  update(@RequestBody ProductGroup group) throws Exception {
        return service.update(group);
     }
     @DeleteMapping("/groups/{id}")

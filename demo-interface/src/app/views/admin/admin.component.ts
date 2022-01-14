@@ -62,9 +62,7 @@ export class AdminComponent implements OnInit {
         e.total = e.items.reduce((p,i)=>p + i.value,0);
        });
         this.orders = e
-        if(this.orders.length > 0){
-          this.showOrder(this.orders[0]);
-        }
+
       });
   }
   selectGroup(group: ProductGroup) {

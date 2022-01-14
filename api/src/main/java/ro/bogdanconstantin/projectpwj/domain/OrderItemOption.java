@@ -17,11 +17,6 @@ public class OrderItemOption extends BaseEntity {
     @Min(0)
     private double quantity;
 
-    public OrderItemOption(Option option, double priceModifier, double quantity) {
-        this.option = option;
-        this.priceModifier = priceModifier;
-        this.quantity = quantity;
-    }
 
     public OrderItemOption() {
 

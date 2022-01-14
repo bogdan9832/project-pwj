@@ -32,7 +32,7 @@ public class ProductController {
     }
     @PatchMapping("/products")
     Product update(@RequestBody ProductDto product) throws Exception {
-        return  service.update(product);
+        return  service.update(product.toFullClass());
 
     }
     @DeleteMapping("/products/{id}")

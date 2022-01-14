@@ -75,8 +75,7 @@ public class ProductControllerTests {
         var product = mock(Product.class);
         when(productsRepository.findById(any(Long.class))).thenReturn(Optional.of(product));
 
-
-        mockMvc.perform(patch("/products").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(new Product())))
+        mockMvc.perform(patch("/products").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(new Product(1L,"","","",0))))
                 .andExpect(status().isOk());
 
     }

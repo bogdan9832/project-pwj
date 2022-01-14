@@ -17,7 +17,10 @@ import ro.bogdanconstantin.projectpwj.domain.ProductGroup;
 import ro.bogdanconstantin.projectpwj.repository.*;
 
 import java.util.Date;
+import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -57,16 +60,15 @@ public class ProductGroupControllerTests {
     public void testInsert()  throws Exception {
         var productGroup = new ProductGroup();
         productGroup.setId(1L);
-
+        when(productGroupsRepository.findById(any(Long.class))).thenReturn(Optional.of(productGroup));
         mockMvc.perform(post("/groups").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(productGroup)))
                 .andExpect(status().isOk());
 
     }
     @Test
     public void testUpdate()  throws Exception {
-        var productGroup = new ProductGroup();
-        productGroup.setId(1L);
-
+        var productGroup = new ProductGroup(1L,"","");
+        when(productGroupsRepository.findById(any(Long.class))).thenReturn(Optional.of(productGroup));
         mockMvc.perform(patch("/groups").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(productGroup)))
                 .andExpect(status().isOk());
 
