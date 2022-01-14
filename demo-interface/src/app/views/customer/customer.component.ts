@@ -15,7 +15,7 @@ export class CustomerComponent implements OnInit {
     id: -1,
     items : [],
     customer: {
-      id: 1
+      id: 5
     },
     status: 0,
     orderNumber : 0,
